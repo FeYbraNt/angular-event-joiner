@@ -1,0 +1,44 @@
+<!-- Modals content -->
+<ng-template #joinEvent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Join the event</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        You're about to sign up for {{ event.name }}. 
+        This event takes place the 
+        <strong>{{ event.startDate.getDate() }}th of {{ event.startDate.toLocaleString('en', { month: "long" }) }}</strong> 
+        in <strong>{{ event.city.name }}</strong>.
+      </p>
+      <p>Are you sure ?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="closeModal()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+    </div>
+</ng-template>
+
+<ng-template #cancelEvent let-modal>
+  <div class="modal-body">
+    You're going to cancel your subscription to {{ event.name }}, are you sure ?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="closeModal()">No</button>
+    <button type="button" class="btn btn-primary" (click)="unjoin()">Yes</button>
+  </div>
+</ng-template>
+
+<!-- Buttons  -->
+<button *ngIf="whereAmI == '/all-events'" type="button" class="btn btn-primary text-nowrap float-lg-right" 
+  [disabled]="!event.isFree" (click)="openModal(joinEvent)">
+    Sing up
+</button>
+
+<button *ngIf="whereAmI == '/my-events'" type="button" class="btn btn-primary text-nowrap float-lg-right"
+  (mouseover)="changeText = true" (mouseout)="changeText = false" [ngStyle]="{ opacity: changeText ? '1' : '.65' }" (click)="openModal(cancelEvent)">
+  <span *ngIf="changeText">Cancel</span>
+  <span *ngIf="!changeText">You're in</span>
+</button>

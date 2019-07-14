@@ -1,0 +1,16 @@
+<div class="container pt-3">
+    <h5 class="text-left pt-4">My next tech events: </h5>
+    <div class="alert alert-info mt-3" role="alert" *ngIf="myEvents.length == 0">
+        You haven't join any events yet, start now and go to 'All Events' page !!
+    </div>
+    <div class="container-fluid pt-3 px-0" *ngFor="let day of filterDays">
+        <small>{{ day.weekday }} {{ day.day }}th of {{ day.monthName }}</small>
+            <ul class="list-group mt-1">
+                <li class="list-group-item flex-column" 
+                        *ngFor="let event of getEventsByDayOfMonth(day.day, day.month)">
+                    <app-event [event]="event"></app-event>
+                    <app-modal [event]="event"></app-modal>
+                </li>
+            </ul>
+    </div>
+</div>

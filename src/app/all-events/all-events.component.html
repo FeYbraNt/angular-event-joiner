@@ -1,0 +1,10 @@
+<div class="container pt-3" *ngFor="let day of filterDays">
+    <small>{{ day.weekday }} {{ day.day }}th of {{ day.monthName }}</small>
+    <div class="list-group mt-1">
+        <div class="list-group-item clearfix" 
+                *ngFor="let event of getEventsByDayOfMonth(day.day, day.month)">
+                    <app-event [event]="event"></app-event>
+                    <app-modal [event]="event"></app-modal>
+            </div>
+    </div>
+</div>

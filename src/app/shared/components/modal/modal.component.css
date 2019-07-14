@@ -1,0 +1,6 @@
+@media only screen and (max-width: 991.98px) {
+    button.btn.btn-primary.float-lg-right {
+        margin-top: 1rem;
+        width: 100%;
+    }
+}

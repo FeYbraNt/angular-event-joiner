@@ -1,0 +1,7 @@
+<div class="d-flex justify-content-between float-left">
+    <h5>{{ event.startDate.toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit' }) }}  </h5>
+    <div class="container">
+        <h5 class="my-0">{{ event.name }} <span *ngIf="event.isFree" style="color: green">Free !!</span></h5>
+        <small class="text-muted">{{ event.city.name }} - {{ getDurationHours() }}h</small>
+    </div>
+</div>
